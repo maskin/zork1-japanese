@@ -1,3 +1,37 @@
+# Zork I 日本語版 / Zork I Japanese Edition
+
+🎮 **[今すぐブラウザでプレイ / Play Now in Browser](https://maskin.github.io/zork1-japanese/)**
+
+---
+
+## 日本語について / About Japanese Version
+
+このリポジトリは、1980年にInfocom社が制作した伝説的テキストアドベンチャーゲーム「Zork I」をGitHub Pages上でプレイできるようにしたものです。ゲーム自体は英語ですが、日本語の翻訳ヒントと操作説明を追加しています。
+
+This repository provides a browser-based version of the legendary text adventure game "Zork I" created by Infocom in 1980. The game itself is in English, but Japanese translation hints and instructions have been added.
+
+### 特徴 / Features
+
+- 🌐 ブラウザで直接プレイ可能（インストール不要）
+- 🇯🇵 日本語の操作説明とヒント
+- 💾 セーブ/ロード機能
+- 📱 モバイル対応レスポンシブデザイン
+- 🎨 レトロなターミナル風インターフェース
+
+### 遊び方 / How to Play
+
+1. [ゲームページ](https://maskin.github.io/zork1-japanese/)にアクセス
+2. 英語のコマンドを入力してゲームを操作
+3. 基本コマンド：
+   - `look` - 周りを見る
+   - `north/south/east/west` - 移動する
+   - `take [物]` - 物を取る
+   - `inventory` - 持ち物を見る
+   - `open [物]` - 開ける
+   - `help` - ヘルプを表示
+
+---
+
 # Zork I Source Code Collection
 
 Zork I is a 1980 interactive fiction game written by Marc Blank, Dave Lebling, Bruce Daniels and Tim Anderson and published by Infocom.
