@@ -65,3 +65,56 @@ __What is the Purpose of this Repository__
 This collection is meant for education, discussion, and historical work, allowing researchers and students to study how code was made for these interactive fiction games and how the system dealt with input and processing.
 
 Researchers are encouraged to share their discoveries about the information in this source code and the history of Infocom and its many innovative employees.
+
+---
+
+## 日本語版について / Japanese Version
+
+### 開発環境 / Development Environment
+
+このリポジトリのソースコードをコンパイルするには、以下の環境が必要です：
+
+1. **ZILFコンパイラ**: [ZILF](https://foss.heptapod.net/zilf/zilf) はZIL（Zork Implementation Language）ファイルをZ-machineバイナリ（.z3、.z5など）にコンパイルするためのオープンソースコンパイラです。
+   - ダウンロード: https://foss.heptapod.net/zilf/zilf/-/releases
+   - .NET Framework（Windows）または Mono（macOS/Linux）が必要です
+
+2. **Z-machineインタープリタ**: コンパイルされたゲームを実行するには、Z-machineインタープリタが必要です：
+   - [Frotz](https://davidgriffith.gitlab.io/frotz/) - コマンドライン/コンソール用
+   - [Lectrote](https://github.com/erkyrath/lectrote) - クロスプラットフォームGUIアプリ
+   - [Gargoyle](https://github.com/garglk/garglk) - 複数のIF形式に対応
+
+#### コンパイル手順の例
+
+```bash
+# ZILFを使用してコンパイル（基本的なコマンド）
+zilf zork1.zil
+zapf zork1.zap
+```
+
+### ライセンスについて / License Information
+
+このリポジトリは **MITライセンス** で公開されています。MITライセンスは非常に寛容なオープンソースライセンスであり、以下のことが許可されています：
+
+- ✅ **商用利用**: 商業目的での利用が可能
+- ✅ **改変**: ソースコードの改変が可能（日本語版の作成を含む）
+- ✅ **配布**: 改変版の配布が可能
+- ✅ **サブライセンス**: 異なるライセンスでの再配布も可能
+- ✅ **私的利用**: 個人的な使用が可能
+
+**日本語版を作成することはライセンス上完全に可能です。** 著作権表示とライセンス文を含めれば、自由に翻訳・改変・配布できます。
+
+### 日本語版作成のガイド / Guide for Creating Japanese Version
+
+日本語版を作成する際の主なポイント：
+
+1. **テキストの翻訳**: `.zil`ファイル内の英語テキスト（ゲームの説明、メッセージなど）を日本語に翻訳します。
+
+2. **パーサーの対応**: 日本語入力に対応するには、`gparser.zil`を大幅に改修する必要があります。日本語の文法構造は英語と異なるため、これは大きな技術的課題となります。
+
+3. **文字コード**: Z-machineの標準文字セットには日本語文字が含まれていないため、Unicode対応のインタープリタを使用するか、代替アプローチを検討する必要があります。
+
+4. **代替アプローチ**: 
+   - [Inform 7](http://inform7.com/) など、より現代的なIF開発システムを使用して日本語版を再実装する
+   - [Twine](https://twinery.org/) などのシステムで選択肢ベースのバージョンを作成する
+
+ご質問やご提案がありましたら、Issueを作成してください。
