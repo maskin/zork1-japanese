@@ -482,7 +482,13 @@ This gives you the rank of Beginner.
                     localStorage.setItem('zork1_save', JSON.stringify(simulationState));
                     appendOutput("Your position has been saved.\n【和訳】ポジションが保存されました。");
                 } catch (e) {
-                    appendOutput("Save failed.\n【和訳】保存に失敗しました。");
+                    if (e.name === 'QuotaExceededError') {
+                        appendOutput("Save failed: Storage is full.\n【和訳】保存に失敗しました：ストレージがいっぱいです。");
+                    } else if (e.name === 'SecurityError') {
+                        appendOutput("Save failed: Storage is disabled.\n【和訳】保存に失敗しました：ストレージが無効です。");
+                    } else {
+                        appendOutput("Save failed: " + e.message + "\n【和訳】保存に失敗しました。");
+                    }
                 }
                 break;
 
@@ -498,7 +504,11 @@ This gives you the rank of Beginner.
                         appendOutput("No saved game found.\n【和訳】保存されたゲームが見つかりません。");
                     }
                 } catch (e) {
-                    appendOutput("Restore failed.\n【和訳】復元に失敗しました。");
+                    if (e.name === 'SecurityError') {
+                        appendOutput("Restore failed: Storage is disabled.\n【和訳】復元に失敗しました：ストレージが無効です。");
+                    } else {
+                        appendOutput("Restore failed: " + e.message + "\n【和訳】復元に失敗しました。");
+                    }
                 }
                 break;
 
