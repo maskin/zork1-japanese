@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zork I - 日本語版 | テキストアドベンチャーゲーム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Code Pro', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'MS Gothic', monospace;
+            background-color: #000;
+            color: #0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #0f0;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            color: #0a0;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        #game-output {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background-color: #0a0a0a;
+            border: 1px solid #0f0;
+            margin-bottom: 1rem;
+            min-height: 400px;
+            max-height: 60vh;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        #game-output .system {
+            color: #ff0;
+        }
+
+        #game-output .error {
+            color: #f00;
+        }
+
+        #game-output .command {
+            color: #0ff;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        #command-input {
+            flex: 1;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-family: inherit;
+            background-color: #111;
+            color: #0f0;
+            border: 1px solid #0f0;
+            outline: none;
+        }
+
+        #command-input:focus {
+            border-color: #0ff;
+            box-shadow: 0 0 5px #0ff;
+        }
+
+        #submit-btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            background-color: #0f0;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #submit-btn:hover {
+            background-color: #0ff;
+        }
+
+        .help-section {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #111;
+            border: 1px solid #333;
+        }
+
+        .help-section h2 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #ff0;
+        }
+
+        .help-section p {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        .command-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .command-list span {
+            background-color: #222;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #111;
+            border-top: 1px solid #333;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        footer a {
+            color: #0f0;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.2rem;
+            }
+
+            #game-output {
+                min-height: 300px;
+            }
+
+            .input-container {
+                flex-direction: column;
+            }
+
+            #submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏰 Zork I - 日本語版</h1>
+        <p>Infocom社の伝説的テキストアドベンチャーゲーム</p>
+    </header>
+
+    <main>
+        <div id="game-output"></div>
+        
+        <div class="input-container">
+            <input type="text" id="command-input" placeholder="コマンドを入力してください（例: look, north, take lamp）" autofocus>
+            <button id="submit-btn">実行</button>
+        </div>
+
+        <div class="help-section">
+            <h2>📖 基本コマンド</h2>
+            <p>ゲームは英語のコマンドで操作します。以下は基本的なコマンドです：</p>
+            <div class="command-list">
+                <span>look (見る)</span>
+                <span>north/n (北へ)</span>
+                <span>south/s (南へ)</span>
+                <span>east/e (東へ)</span>
+                <span>west/w (西へ)</span>
+                <span>up/u (上へ)</span>
+                <span>down/d (下へ)</span>
+                <span>take [物] (取る)</span>
+                <span>drop [物] (置く)</span>
+                <span>open [物] (開ける)</span>
+                <span>inventory/i (持ち物)</span>
+                <span>examine [物] (調べる)</span>
+                <span>save (セーブ)</span>
+                <span>restore (ロード)</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Zork I © 1980 Infocom, Inc. | 
+        <a href="https://github.com/maskin/zork1-japanese" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+    </footer>
+
+    <!-- ZVM JavaScript Z-machine Interpreter -->
+    <script src="https://cdn.jsdelivr.net/npm/parchment-html@1.0.1/dist/zvm.min.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
